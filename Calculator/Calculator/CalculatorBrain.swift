@@ -32,13 +32,38 @@ class CalculatorBrain
     var variableValues = [String:Double]()
     
     private var knownOps = [String:Op] ()
-    
+    var opDone = false
     var descriprion: String{
-        get{ return returnStringEval(opStack).result!
-            
+        get{
+            if !opDone{
+                opDone = true
+                return returnStringEval(opStack).result!
+                }
+            else{
+                return ", " + returnStringEval(opStack).result!
+            }
         }
     }
-    
+    typealias PropertyList = AnyObject
+    var program: PropertyList{ // guaranteed to be a property list
+        get{
+            return opStack.map{ $0.description};
+            }
+        set{
+            if let opSymbols = newValue as? Array<String>{
+                var newOpStack = [Op]()
+                for opSymbol in opSymbols{
+                    if let op = knownOps[opSymbol]{
+                    newOpStack.append(op)
+                    }
+                    else if let operand = NSNumberFormatter().numberFromString(opSymbol)?.doubleValue{
+                        newOpStack.append(.Operand(operand))
+                    }
+                }
+                opStack = newOpStack
+            }
+        }
+    }
     init ()
     {
         func learnOp(op: Op)
@@ -58,6 +83,7 @@ class CalculatorBrain
     
     func clearStack(){
         opStack.removeAll(keepCapacity: false)
+        opDone = false
     }
     
     private func returnStringEval(ops: [Op]) -> (result: String?, remainingOps: [Op])
@@ -73,12 +99,20 @@ class CalculatorBrain
                 if let operand = operandString.result {
                     return (op.description + "(" + operand + ")", operandString.remainingOps)
                 }
+                else{
+                    return (op.description + "(" + "?" + ")", operandString.remainingOps)
+
+                }
             case .BinaryOperation(_, let operation):
                 let op1str = returnStringEval(remainingOps)
                 if let operand1 = op1str.result {
                     let op2str = returnStringEval(op1str.remainingOps)
                     if let operand2 = op2str.result {
-                        return (operand1 + op.description + operand2, op2str.remainingOps)
+                        return ("(" + operand1 + op.description + operand2 + ")", op2str.remainingOps)
+                    }
+                    else{
+                        return ("(" + operand1 + op.description + "?" + ")", op2str.remainingOps)
+
                     }
                 }
             case .NoOperation(_, let operation):

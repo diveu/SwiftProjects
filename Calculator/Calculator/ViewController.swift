@@ -76,9 +76,9 @@ class ViewController: UIViewController {
         }
         if let operation = sender.currentTitle
         {
-            stat.text = stat.text! + sender.currentTitle! + " = "
             if let result = brain.performOperation(operation){
                 displayValue = result
+                stat.text = stat.text! + brain.descriprion
             }
             else {
                 displayValue = nil
@@ -105,7 +105,6 @@ class ViewController: UIViewController {
         }
         set{
             display.text = "\(newValue)"
-            stat.text = stat.text! + display.text! + " "
             userIsInTheMiddleOfTypingANumber = false
         }
     }

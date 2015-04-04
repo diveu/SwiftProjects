@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Val-Bs-Iic">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Happiness View Controller-->
+        <scene sceneID="qaT-Jj-e4F">
+            <objects>
+                <viewController id="Val-Bs-Iic" customClass="HappinessViewController" customModule="Happiness" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u8J-F3-Mrx"/>
+                        <viewControllerLayoutGuide type="bottom" id="HpX-Ce-bj0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4m7-BB-oN0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="RO9-FX-DjE" customClass="FaceView" customModule="Happiness" customModuleProvider="target">
+                                <rect key="frame" x="47" y="20" width="537" height="560"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RO9-FX-DjE" firstAttribute="leading" secondItem="4m7-BB-oN0" secondAttribute="leadingMargin" constant="31" id="Hre-nj-LSH"/>
+                            <constraint firstAttribute="bottom" secondItem="RO9-FX-DjE" secondAttribute="bottom" constant="20" symbolic="YES" id="IoF-eZ-Zti"/>
+                            <constraint firstItem="RO9-FX-DjE" firstAttribute="trailing" secondItem="4m7-BB-oN0" secondAttribute="trailingMargin" id="OZH-ht-ssy"/>
+                            <constraint firstItem="RO9-FX-DjE" firstAttribute="top" secondItem="u8J-F3-Mrx" secondAttribute="bottom" id="hEj-Vg-pQu"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQQ-jm-lc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="45"/>
+        </scene>
+    </scenes>
+</document>
